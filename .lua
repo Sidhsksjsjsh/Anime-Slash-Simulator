@@ -225,3 +225,10 @@ _G.gs = Value
       end
 end    
 })
+
+workspaceDesc(workspace,function(int)
+      if int:IsA("ProximityPrompt") then
+            int.HoldDuration = 0
+            int.ActionText = "TurtleOS V1.0.0"
+      end
+end
