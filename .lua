@@ -2,6 +2,20 @@ local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = false, ConfigFolder = "TurtleFi"})
 local workspace = game:GetService("Workspace")
 
+--Workspace.Game.Stages.Naruto.Duel.Naruto.Miscs.Prompt.ProximityPrompt
+
+local function workspaceChildren(str,func)
+for _,v in pairs(str:GetChildren()) do
+      func(v)
+end
+end
+
+local function workspaceDesc(str,func)
+for _,v in pairs(str:GetDescendants()) do
+      func(v)
+end
+end
+
 local T1 = Window:MakeTab({
 Name = "Main",
 Icon = "rbxassetid://",
@@ -123,7 +137,11 @@ Callback = function(Value)
 _G.d = Value
       while wait() do
         if _G.d == false then break end
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["DuelService"]["RF"]["JoinChampions"]:InvokeServer(workspace["Game"]["Stages"][_G.DuelWorld]["Duel"][_G.Duelist])
+        workspaceDesc(workspace["Game"]["Stages"][_G.DuelWorld]["Duel"][_G.Duelist],function(v)
+            if v:IsA("ProximityPrompt") then
+                  fireproximityprompt(v)
+            end
+       end)
       end
 end    
 })
