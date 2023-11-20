@@ -54,11 +54,25 @@ Icon = "rbxassetid://",
 PremiumOnly = false
 })
 
+local T6 = Window:MakeTab({
+Name = "Training Dummy",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
+local T7 = Window:MakeTab({
+Name = "Potion",
+Icon = "rbxassetid://",
+PremiumOnly = false
+})
+
 local swordHandle = {}
 local eggHandle = {}
 local duelCharHandle = {}
 local champsHandle = {}
 local worldHandle = {}
+local Dummies = {}
+local Potion = {"Win","Power","Luck"}
 
 OrionLib:AddTable(game:GetService("ReplicatedStorage")["Assets"]["Swords"],swordHandle)
 OrionLib:AddTable(game:GetService("ReplicatedStorage")["Assets"]["Eggs"],eggHandle)
@@ -66,12 +80,34 @@ OrionLib:AddTable(game:GetService("ReplicatedStorage")["Assets"]["DuelCharacter"
 OrionLib:AddTable(game:GetService("ReplicatedStorage")["Assets"]["Champs"],champsHandle)
 OrionLib:AddTable(workspace["Game"]["Stages"],worldHandle)
 
+for i = 1,#worldHandle do
+      OrionLib:AddTable(workspace["Game"]["Stages"][worldHandle[1]]["TrainingArea"],Dummies)
+end
+
 T2:AddDropdown({
 Name = "Select World",
 Default = worldHandle[1],
 Options = worldHandle,
 Callback = function(Value)
 _G.DuelWorld = Value
+end    
+})
+
+T6:AddDropdown({
+Name = "Select Dummy",
+Default = Dummies[1],
+Options = Dummies,
+Callback = function(Value)
+_G._gTrainingDummy = Value
+end    
+})
+
+T7:AddDropdown({
+Name = "Select Potion",
+Default = Potion[1],
+Options = Potion,
+Callback = function(Value)
+_G._Potion = Value
 end    
 })
 
@@ -115,6 +151,13 @@ T4:AddButton({
 Name = "Equip Sword",
 Callback = function()
       game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["EquipSword"]:InvokeServer(_G.Swords)
+  end    
+})
+
+T7:AddButton({
+Name = "Use Potion",
+Callback = function()
+      game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["BoostService"]["RF"]["ConsumeBoostInventory"]:InvokeServer(tostring(_G._Potion) .. " Potion")
   end    
 })
 
