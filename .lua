@@ -1,8 +1,43 @@
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = false, ConfigFolder = "TurtleFi"})
 local workspace = game:GetService("Workspace")
+local player = game.Players.LocalPlayer
+local char = player.Character
+local humanoid = char.Humanoid
+local root = char.HumanoidRootPart
 
---Workspace.Game.Stages.Naruto.Duel.Naruto.Miscs.Prompt.ProximityPrompt
+local Settings = {
+    Height = 20,
+    Height1 = -20,
+    distance = 1.5
+}
+
+local method = {
+    Top = false,
+    Under = false,
+    Behind = true,
+    Teleport = false
+}
+
+local function Teleport(target)
+if method.Teleport == true then
+        if method.Top == true then
+            root.CFrame = CFrame.new(target.CFrame * CFrame.Angles(math.rad(-90),0,0) + Vector3.new(0,Settings.Height,0))
+        elseif method.Under == true then
+            root.CFrame = CFrame.new(target.CFrame * CFrame.Angles(math.rad(90),0,0) + Vector3.new(0,Settings.Height1,0))
+        elseif method.Behind == true then
+            root.CFrame = CFrame.new(target.CFrame * CFrame.new(0,0,Settings.distance))
+        end
+elseif method.Teleport == false then
+        if method.Top == true then
+            TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0),{CFrame = target.CFrame * CFrame.Angles(math.rad(-90),0,0) + Vector3.new(0,Settings.Height,0)}):Play()
+        elseif method.Under == true then
+            TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0),{CFrame = target.CFrame * CFrame.Angles(math.rad(90),0,0) + Vector3.new(0,Settings.Height1,0)}):Play()
+        elseif method.Behind == true then
+            TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0),{CFrame = target.CFrame * CFrame.new(0,0,Settings.distance)}):Play()
+        end
+    end
+end
 
 local function workspaceChildren(str,func)
 for _,v in pairs(str:GetChildren()) do
@@ -81,7 +116,7 @@ OrionLib:AddTable(game:GetService("ReplicatedStorage")["Assets"]["Champs"],champ
 OrionLib:AddTable(workspace["Game"]["Stages"],worldHandle)
 
 for i = 1,#worldHandle do
-      OrionLib:AddTable(workspace["Game"]["Stages"][worldHandle[1]]["TrainingArea"],Dummies)
+      OrionLib:AddTable(workspace["Game"]["Stages"][worldHandle[i]]["TrainingArea"],Dummies)
 end
 
 T2:AddDropdown({
@@ -90,6 +125,15 @@ Default = worldHandle[1],
 Options = worldHandle,
 Callback = function(Value)
 _G.DuelWorld = Value
+end    
+})
+
+T6:AddDropdown({
+Name = "Select World",
+Default = worldHandle[1],
+Options = worldHandle,
+Callback = function(Value)
+_G.DummyWorld = Value
 end    
 })
 
@@ -177,6 +221,18 @@ _G.ht = Value
         if _G.ht == false then break end
         game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["EggService"]["RF"]["Hatch"]:InvokeServer(_G.Eggs,{})
         game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["EggService"]["RF"]["FinishedAnimation"]:InvokeServer()
+      end
+end    
+})
+
+T6:AddToggle({
+Name = "Teleport To Dummy",
+Default = false,
+Callback = function(Value)
+_G.tdm = Value
+      while wait() do
+        if _G.tdm == false then break end
+        Teleport(workspace["Game"]["Stages"][_G._gTrainingDummy]["TrainingArea"][_G.DummyWorld])
       end
 end    
 })
