@@ -16,6 +16,14 @@ for _,v in pairs(str:GetDescendants()) do
 end
 end
 
+local function EquipBest()
+game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["ChampsService"]["RF"]["EquipBest"]:InvokeServer()
+end
+
+local function Craft()
+game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["ChampsService"]["RF"]["UpgradeAll"]:InvokeServer()
+end
+
 local T1 = Window:MakeTab({
 Name = "Main",
 Icon = "rbxassetid://",
@@ -130,12 +138,49 @@ _G.ht = Value
 end    
 })
 
+T3:AddToggle({
+Name = "Equip Best",
+Default = false,
+Callback = function(Value)
+_G.eb = Value
+      while wait() do
+        if _G.eb == false then break end
+        EquipBest()
+      end
+end    
+})
+
+T3:AddToggle({
+Name = "Craft",
+Default = false,
+Callback = function(Value)
+_G.crf = Value
+      while wait() do
+        if _G.crf == false then break end
+        Craft()
+      end
+end    
+})
+
+T2:AddSlider({
+  Name = "Duel Cooldown",
+  Min = 0,
+  Max = 60,
+  Default = 1.5,
+  Color = Color3.fromRGB(255,255,255),
+  Increment = 1,
+  ValueName = "Cooldown",
+  Callback = function(Value)
+     _G._duel_cd = Value
+  end    
+})
+
 T2:AddToggle({
 Name = "Auto Duel",
 Default = false,
 Callback = function(Value)
 _G.d = Value
-      while wait() do
+      while wait(_G._duel_cd) do
         if _G.d == false then break end
         workspaceDesc(workspace["Game"]["Stages"][_G.DuelWorld]["Duel"][_G.Duelist],function(v)
             if v:IsA("ProximityPrompt") then
@@ -174,6 +219,15 @@ Callback = function(Value)
 _G.Click = Value
       while wait() do
         if _G.Click == false then break end
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
+        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
         game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
       end
 end    
