@@ -220,15 +220,6 @@ _G.Click = Value
       while wait() do
         if _G.Click == false then break end
         game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
-        game:GetService("ReplicatedStorage")["Packages"]["_Index"]:FindFirstChild("sleitnick_knit@1.5.1")["knit"]["Services"]["SwordService"]["RF"]["Attack"]:InvokeServer()
       end
 end    
 })
