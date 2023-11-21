@@ -16,17 +16,17 @@ local method = {
     Top = false,
     Under = false,
     Behind = true,
-    Teleport = false
+    Teleport = true
 }
 
 local function Teleport(target)
 if method.Teleport == true then
         if method.Top == true then
-            root.CFrame = CFrame.new(target.CFrame * CFrame.Angles(math.rad(-90),0,0) + Vector3.new(0,Settings.Height,0))
+            root.CFrame = target.CFrame * CFrame.Angles(math.rad(-90),0,0) + Vector3.new(0,Settings.Height,0)
         elseif method.Under == true then
-            root.CFrame = CFrame.new(target.CFrame * CFrame.Angles(math.rad(90),0,0) + Vector3.new(0,Settings.Height1,0))
+            root.CFrame = target.CFrame * CFrame.Angles(math.rad(90),0,0) + Vector3.new(0,Settings.Height1,0)
         elseif method.Behind == true then
-            root.CFrame = CFrame.new(target.CFrame * CFrame.new(0,0,Settings.distance))
+            root.CFrame = target.CFrame * CFrame.new(0,0,Settings.distance)
         end
 elseif method.Teleport == false then
         if method.Top == true then
